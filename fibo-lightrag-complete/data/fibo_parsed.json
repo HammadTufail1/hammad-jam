@@ -1,0 +1,218 @@
+{
+  "classes": {
+    "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization": {
+      "label": "Organization",
+      "definition": "A formal or informal organization of people or other legal entities with some common purpose",
+      "parent_classes": [],
+      "properties": ["hasName", "hasAddress", "hasIdentifier"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity": {
+      "label": "Legal Entity",
+      "definition": "A legal person that is a partnership, corporation, or other organization having the capacity to negotiate contracts, assume financial obligations, and pay off debts",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"],
+      "properties": ["hasLegalForm", "hasJurisdiction"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution": {
+      "label": "Financial Institution",
+      "definition": "An organization that provides financial services to customers",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity"],
+      "properties": ["providesFinancialService", "isRegulatedBy"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/Bank": {
+      "label": "Bank",
+      "definition": "A financial institution that accepts deposits from the public and creates credit",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution"],
+      "properties": ["acceptsDeposits", "makesLoans", "hasCapitalRatio"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/InvestmentBank": {
+      "label": "Investment Bank",
+      "definition": "A financial institution that provides investment banking services including underwriting and advisory services",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/Bank"],
+      "properties": ["providesUnderwriting", "providesAdvisoryServices"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct": {
+      "label": "Financial Product",
+      "definition": "A product provided to consumers and businesses by financial institutions",
+      "parent_classes": [],
+      "properties": ["hasRisk", "hasReturn", "hasMaturity"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialService": {
+      "label": "Financial Service",
+      "definition": "A service provided by the finance industry",
+      "parent_classes": [],
+      "properties": ["isProvidedBy", "hasServiceProvider"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument": {
+      "label": "Financial Instrument",
+      "definition": "A tradable asset, security, or contract",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct"],
+      "properties": ["hasFaceValue", "hasIssuer", "hasMaturityDate"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Equity": {
+      "label": "Equity",
+      "definition": "A financial instrument representing ownership in a corporation",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument"],
+      "properties": ["representsOwnership", "hasVotingRights"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/DebtInstrument": {
+      "label": "Debt Instrument",
+      "definition": "A financial instrument representing a creditor relationship with an entity",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument"],
+      "properties": ["hasInterestRate", "hasPrincipal", "hasRepaymentTerms"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount": {
+      "label": "Monetary Amount",
+      "definition": "A number of monetary units specified in a currency",
+      "parent_classes": [],
+      "properties": ["hasCurrency", "hasAmount"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/Agents/Agent": {
+      "label": "Agent",
+      "definition": "An entity that acts or has the power or capacity to act",
+      "parent_classes": [],
+      "properties": ["actsOnBehalfOf", "hasCapacity"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/Partnership": {
+      "label": "Partnership",
+      "definition": "A relationship between entities that work together toward shared goals",
+      "parent_classes": [],
+      "properties": ["hasPartner", "hasSharedGoal"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/BE/GovernmentEntities/GovernmentEntities/RegulatoryAgency": {
+      "label": "Regulatory Agency",
+      "definition": "A government agency responsible for exercising regulatory authority over some area of activity",
+      "parent_classes": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"],
+      "properties": ["hasRegulatoryAuthority", "oversees"]
+    }
+  },
+  "properties": {
+    "https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasName": {
+      "label": "hasName",
+      "definition": "Associates an entity with its name",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"],
+      "range": ["string"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/providesFinancialService": {
+      "label": "providesFinancialService",
+      "definition": "Indicates that a financial institution provides a specific financial service",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialService"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/isRegulatedBy": {
+      "label": "isRegulatedBy",
+      "definition": "Indicates that an organization is subject to regulation by a regulatory body",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/BE/GovernmentEntities/GovernmentEntities/RegulatoryAgency"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/hasIssuer": {
+      "label": "hasIssuer",
+      "definition": "Identifies the entity that issues a financial instrument",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasPartner": {
+      "label": "hasPartner",
+      "definition": "Identifies an entity that is a partner in a partnership relationship",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/Partnership"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/owns": {
+      "label": "owns",
+      "definition": "Indicates an ownership relationship between entities",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/offersProduct": {
+      "label": "offersProduct",
+      "definition": "Indicates that an organization offers a specific financial product",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct"]
+    },
+    "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasMonetaryAmount": {
+      "label": "hasMonetaryAmount",
+      "definition": "Associates an entity with a monetary amount",
+      "domain": ["https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization"],
+      "range": ["https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount"]
+    }
+  },
+  "relationships": [
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/Bank",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/InvestmentBank",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/Bank",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Equity",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/DebtInstrument",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct",
+      "relationship_type": "subclass"
+    },
+    {
+      "subject": "https://spec.edmcouncil.org/fibo/ontology/BE/GovernmentEntities/GovernmentEntities/RegulatoryAgency",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization",
+      "relationship_type": "subclass"
+    }
+  ],
+  "entity_types": {
+    "organizations": [
+      "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/Organization",
+      "https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/LegalEntity",
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/FinancialInstitution",
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/Bank",
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/InvestmentBank",
+      "https://spec.edmcouncil.org/fibo/ontology/BE/GovernmentEntities/GovernmentEntities/RegulatoryAgency"
+    ],
+    "financial_instruments": [
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument",
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Equity",
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/DebtInstrument"
+    ],
+    "agents": [
+      "https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/Agents/Agent"
+    ],
+    "products": [
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct"
+    ],
+    "services": [
+      "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialService"
+    ],
+    "markets": [],
+    "contracts": [],
+    "other": [
+      "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount",
+      "https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/Partnership"
+    ]
+  }
+}
