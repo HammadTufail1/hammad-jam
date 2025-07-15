@@ -1,0 +1,38 @@
+# Core LightRAG dependencies
+lightrag
+openai
+sentence-transformers
+transformers
+torch
+faiss-cpu
+numpy
+pandas
+
+# FIBO ontology processing
+rdflib
+owlready2
+sparqlwrapper
+pyld
+
+# Graph database and storage
+neo4j
+networkx
+chromadb
+
+# Additional utilities
+pydantic
+python-dotenv
+click
+tqdm
+asyncio
+aiofiles
+xmltodict
+beautifulsoup4
+lxml
+
+# Development and testing
+pytest
+pytest-asyncio
+black
+flake8
+jupyter
